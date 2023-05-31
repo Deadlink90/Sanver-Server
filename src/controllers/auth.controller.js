@@ -45,12 +45,15 @@ export const signIn = async (req, res) => {
 
   if (!matchPassword)
     return res
-      .status(401)
       .json({ message: "Invalid password", status: "false" });
 
   const token = jwt.sign({ id: userFound._id }, config.SECRET, {
     expiresIn: 86400,
   });
 
-  res.json({token});
+  res.json({token, message:'Valid Sesion', status:'true',username:userFound.username});
 };
+
+export const adminCheck = async(req,res) => {
+res.json({message:'Valid Token', status:'true'})  
+}

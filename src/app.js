@@ -1,20 +1,26 @@
 import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json';
-import {createRoles} from './libs/roles.init'
+import cors from 'cors'
+//inits
+import {createRoles} from './libs/inits/roles.init';
+import { userInit } from './libs/inits/users.init';
+import { driverInit } from './libs/inits/drivers.init';
 //importacion de rutas
 import driversRoutes from './routes/drivers.routes';
 import authRoutes from './routes/auth.routes';
-import userRoutes from './routes/user.routes'
+import userRoutes from './routes/user.routes';
 
 const app = express();
 
 //ejecucion de inits
 createRoles();
+userInit();
 
 app.set('pkg', pkg);
 app.use(morgan('dev'));
 app.use(express.json())
+app.use(cors());
 
 app.get('/', (req,res) => {
 res.json({

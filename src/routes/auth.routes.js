@@ -16,5 +16,6 @@ router.post(
   authCtrl.signUp
 );
 router.post("/signin", authCtrl.signIn);
+router.get("/admin",authJwt.verifyToken, authCtrl.adminCheck);
 
 export default router;

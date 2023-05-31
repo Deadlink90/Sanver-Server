@@ -1,4 +1,4 @@
-import roleModel from "../models/roles";
+import roleModel from "../../models/roles";
 
 export const createRoles = async() => {
     
@@ -6,7 +6,7 @@ export const createRoles = async() => {
 
   if (count > 0) return;
 
-  try {
+  try { 
     const values = await Promise.all([
       new roleModel({ name: "user" }).save(),
       new roleModel({ name: "moderator" }).save(),
